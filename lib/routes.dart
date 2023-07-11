@@ -5,6 +5,7 @@ import 'package:poc_nested_navigation/nav1_page.dart';
 import 'package:poc_nested_navigation/nav2_page.dart';
 import 'package:poc_nested_navigation/nav3_page.dart';
 import 'package:poc_nested_navigation/nav_1_child_page.dart';
+import 'package:poc_nested_navigation/nav_1_nested_child_page.dart';
 
 import 'route_keys.dart';
 
@@ -57,23 +58,42 @@ class Routes {
             },
             routes: [
               GoRoute(
-                name: 'nav1child',
-                path: 'nav1child',
-                parentNavigatorKey: RouteKeys.navigatorHome,
-                pageBuilder: (context, state) {
-                  return CustomTransitionPage(
-                    child: Nav1ChildPage(
-                      key: state.pageKey,
+                  name: 'nav1child',
+                  path: 'nav1child',
+                  parentNavigatorKey: RouteKeys.navigatorHome,
+                  pageBuilder: (context, state) {
+                    return CustomTransitionPage(
+                      child: Nav1ChildPage(
+                        key: state.pageKey,
+                      ),
+                      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                        return FadeTransition(
+                          opacity: animation,
+                          child: child,
+                        );
+                      },
+                    );
+                  },
+                  routes: [
+                    GoRoute(
+                      name: 'nav1Nestedchild',
+                      path: 'nav1Nestedchild',
+                      parentNavigatorKey: RouteKeys.navigatorHome,
+                      pageBuilder: (context, state) {
+                        return CustomTransitionPage(
+                          child: Nav1NestedChildPage(
+                            key: state.pageKey,
+                          ),
+                          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                            return FadeTransition(
+                              opacity: animation,
+                              child: child,
+                            );
+                          },
+                        );
+                      },
                     ),
-                    transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                      return FadeTransition(
-                        opacity: animation,
-                        child: child,
-                      );
-                    },
-                  );
-                },
-              ),
+                  ]),
             ],
           ),
           GoRoute(

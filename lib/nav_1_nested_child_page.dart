@@ -1,10 +1,9 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:poc_nested_navigation/routes.dart';
 
-class Nav1ChildPage extends StatelessWidget {
-  const Nav1ChildPage({Key? key}) : super(key: key);
+class Nav1NestedChildPage extends StatelessWidget {
+  const Nav1NestedChildPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,12 +17,9 @@ class Nav1ChildPage extends StatelessWidget {
             },
             icon: const Icon(Icons.arrow_left),
           ),
-          const SizedBox(width: 20),
           IconButton(
-            onPressed: () {
-              context.goNamed('nav1Nestedchild');
-            },
-            icon: const Icon(Icons.arrow_right),
+            onPressed: () {},
+            icon: const Icon(Icons.logout),
           ),
         ],
       ),
